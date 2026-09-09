@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <title>แบบทดสอบเรื่องสี่เหลี่ยมจัตุรัส</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #eeeadf;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" style="margin-top: 20px;">
+    <h2>แบบทดสอบเรื่องสี่เหลี่ยมจัตุรัส</h2>
+    
+    <button type="button" class="btn btn-primary" onclick="randomNum()">สุ่มโจทย์ใหม่</button>
+    
+    <hr>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <img src="../img/square.jpeg" class="img-responsive thumbnail" style="max-width: 500px;" alt="สี่เหลี่ยมจัตุรัส"><br>
+            <p>1. สี่เหลี่ยมจัตุรัส มี ความยาวด้าน <strong id="s1">?</strong> จะมีพื้นที่เท่ากับเท่าใด</p>
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>ตอบ: </label>
+                    <input type="text" class="form-control" id="ans1">
+                </div>
+                <button type="button" class="btn btn-success" onclick="check1()">เช็คคำตอบ</button>
+                <span id="result1" class="label" style="font-size: 14px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>2. สี่เหลี่ยมจัตุรัส มี ความยาวด้าน <strong id="s2">?</strong> จะมีความยาวเส้นรอบรูปเท่ากับเท่าใด</p>
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>ตอบ: </label>
+                    <input type="text" class="form-control" id="ans2">
+                </div>
+                <button type="button" class="btn btn-success" onclick="check2()">เช็คคำตอบ</button>
+                <span id="result2" class="label" style="font-size: 14px;"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var side1 = 0;
+    var side2 = 0;
+
+    function randomNum() {
+        side1 = Math.floor(Math.random() * 201) + 300;
+        side2 = Math.floor(Math.random() * 201) + 300;
+
+        document.getElementById("s1").innerText = side1;
+        document.getElementById("s2").innerText = side2;
+
+        document.getElementById("ans1").value = "";
+        document.getElementById("ans2").value = "";
+        
+        var res1 = document.getElementById("result1");
+        var res2 = document.getElementById("result2");
+        res1.innerText = "";
+        res1.className = "label";
+        res2.innerText = "";
+        res2.className = "label";
+    }
+
+    function check1() {
+        var userAns = document.getElementById("ans1").value;
+        var correctAns = side1 * side1;
+        var res = document.getElementById("result1");
+
+        if (userAns == correctAns) {
+            res.innerText = "ถูกต้อง";
+            res.className = "label label-success";
+        } else {
+            res.innerText = "ผิด";
+            res.className = "label label-danger";
+        }
+    }
+
+    function check2() {
+        var userAns = document.getElementById("ans2").value;
+        var correctAns = 4 * side2;
+        var res = document.getElementById("result2");
+
+        if (userAns == correctAns) {
+            res.innerText = "ถูกต้อง";
+            res.className = "label label-success";
+        } else {
+            res.innerText = "ผิด";
+            res.className = "label label-danger";
+        }
+    }
+
+    randomNum();
+</script>
+
+</body>
+</html>
