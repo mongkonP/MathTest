@@ -1,1 +1,154 @@
 
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <title>Test Game 01: เกมจับคู่เรขาคณิต</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 0;
+        }
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+            text-align: center;
+        }
+        .score-board {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+        .question-box {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+            padding: 20px;
+            background: #e9ecef;
+            border-radius: 15px;
+        }
+        .choice-btn {
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 10px !important;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+        .choice-btn:hover {
+            transform: scale(1.02);
+        }
+        .back-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="game-card">
+        <h2>🎮 Test Game 01</h2>
+        <p class="text-muted">ทายชื่อรูปทรงเรขาคณิตจากสัญลักษณ์</p>
+
+        <div class="score-board">
+            <span>คะแนน: <span id="score" style="color: #28a745;">0</span></span>
+            <span>ข้อที่: <span id="round">1</span>/5</span>
+        </div>
+
+        <div class="question-box" id="questionEmoji">
+            ⚪
+        </div>
+
+        <div id="choicesArea">
+            <!-- ปุ่มตัวเลือกจะถูกสร้างด้วย JavaScript -->
+        </div>
+
+        <div id="resultMessage" style="font-weight: bold; font-size: 16px; margin: 15px 0; min-height: 24px;"></div>
+
+        <button class="btn btn-default back-btn" onclick="location.href='../index.html'">⬅ กลับหน้าเมนูหลัก</button>
+    </div>
+</div>
+
+<script>
+    // ข้อมูลคำถามเกม
+    const questions = [
+        { emoji: "⚪", answer: "วงกลม", choices: ["วงกลม", "ทรงกลม", "สี่เหลี่ยมจัตุรัส"] },
+        { emoji: "🟦", answer: "สี่เหลี่ยมจัตุรัส", choices: ["สามเหลี่ยม", "สี่เหลี่ยมจัตุรัส", "ทรงลูกบาศก์"] },
+        { emoji: "🔺", answer: "สามเหลี่ยม", choices: ["พีระมิด", "สามเหลี่ยม", "ทรงกรวย"] },
+        { emoji: "🛢️", answer: "ทรงกระบอก", choices: ["ทรงกระบอก", "ทรงกลม", "ปริซึมสามเหลี่ยม"] },
+        { emoji: "🍦", answer: "ทรงกรวย", choices: ["ทรงกระบอก", "สี่เหลี่ยมรูปว่าว", "ทรงกรวย"] }
+    ];
+
+    let currentRound = 0;
+    let score = 0;
+
+    function loadQuestion() {
+        if (currentRound >= questions.length) {
+            // จบเกม
+            document.getElementById("questionEmoji").innerHTML = "🎉";
+            document.getElementById("choicesArea").innerHTML = `<h3>จบเกมแล้วครับ!</h3><p>คุณทำคะแนนได้ ${score} / ${questions.length}</p>`;
+            document.getElementById("resultMessage").innerHTML = "";
+            document.getElementById("round").innerText = questions.length;
+            return;
+        }
+
+        document.getElementById("round").innerText = currentRound + 1;
+        let q = questions[currentRound];
+        document.getElementById("questionEmoji").innerText = q.emoji;
+        document.getElementById("resultMessage").innerText = "";
+
+        // สุ่มสลับตำแหน่งปุ่มตัวเลือก
+        let shuffledChoices = [...q.choices].sort(() => Math.random() - 0.5);
+
+        let choicesHtml = "";
+        shuffledChoices.forEach(choice => {
+            choicesHtml += `<button class="btn btn-primary choice-btn" onclick="checkAnswer('${choice}', '${q.answer}')">${choice}</button>`;
+        });
+        document.getElementById("choicesArea").innerHTML = choicesHtml;
+    }
+
+    function checkAnswer(selected, correct) {
+        let msg = document.getElementById("resultMessage");
+        if (selected === correct) {
+            score++;
+            document.getElementById("score").innerText = score;
+            msg.style.color = "#28a745";
+            msg.innerText = "✨ ถูกต้องครับเก่งมาก!";
+        } else {
+            msg.style.color = "#dc3545";
+            msg.innerText = `❌ ผิดครับ คำตอบที่ถูกต้องคือ "${correct}"`;
+        }
+
+        // ปิดการคลิกชั่วคราวแล้วไปข้อถัดไป
+        currentRound++;
+        setTimeout(loadQuestion, 1500);
+    }
+
+    // เริ่มต้นรันเกมข้อแรก
+    loadQuestion();
+</script>
+
+</body>
+</html>
