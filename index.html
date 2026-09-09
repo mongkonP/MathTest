@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <title>เมนูเลือกแบบทดสอบเรขาคณิต</title>
+    <title>เมนูเลือกบทเรียนและเกมเรขาคณิต</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -22,7 +22,7 @@
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             padding: 30px;
-            max-width: 450px;
+            max-width: 800px; /* ขยายความกว้างกล่องเพื่อให้วาง 2 คอลัมน์ได้สวยงาม */
             width: 100%;
             margin: auto;
             backdrop-filter: blur(10px);
@@ -50,6 +50,7 @@
             position: relative;
             overflow: hidden;
             border: none !important;
+            width: 100%;
         }
         .menu-btn:hover {
             transform: translateY(-3px);
@@ -61,6 +62,13 @@
             padding: 3px 8px;
             margin-right: 8px;
             font-size: 13px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 5px;
         }
         #loadingBox {
             margin-top: 20px;
@@ -89,51 +97,69 @@
 <div class="container">
     <div class="main-card">
         <div class="title-header">
-            <h2>📐 เลือกแบบทดสอบเรขาคณิต</h2>
-            <small class="text-muted">เลือกบทเรียนที่ต้องการเริ่มทำแบบทดสอบ</small>
+            <h2>📐 เมนูบทเรียนและเกมเรขาคณิต</h2>
+            <small class="text-muted">เลือกแบบทดสอบหรือลุยเกมฝึกทักษะที่ต้องการ</small>
         </div>
 
-        <div class="btn-group-vertical" style="width: 100%;">
-            <button type="button" class="btn btn-primary menu-btn" onclick="goToPage('Pages/circle.html')">
-                <span class="badge-num">1</span> ⚪ วงกลม (Circle)
-            </button>
-            <button type="button" class="btn btn-success menu-btn" onclick="goToPage('Pages/square.html')">
-                <span class="badge-num">2</span> 🟦 สี่เหลี่ยมจัตุรัส (Square)
-            </button>
-            <button type="button" class="btn btn-info menu-btn" onclick="goToPage('Pages/triangle.html')">
-                <span class="badge-num">3</span> 🔺 สามเหลี่ยม (Triangle)
-            </button>
-            <button type="button" class="btn btn-warning menu-btn" onclick="goToPage('Pages/piramid.html')">
-                <span class="badge-num">4</span> 📐 พีระมิด (Pyramid)
-            </button>
-            <button type="button" class="btn btn-danger menu-btn" onclick="goToPage('Pages/Cylinder.html')">
-                <span class="badge-num">5</span> 🛢️ ทรงกระบอก (Cylinder)
-            </button>
-            <button type="button" class="btn btn-primary menu-btn" style="background-color: #6f42c1;" onclick="goToPage('Pages/kite.html')">
-                <span class="badge-num">6</span> 🪁 สี่เหลี่ยมรูปว่าว (Kite)
-            </button>
-            <button type="button" class="btn btn-info menu-btn" style="background-color: #20c997;" onclick="goToPage('Pages/pork.html')">
-                <span class="badge-num">7</span> ⏢ สี่เหลี่ยมคางหมู (Trapezoid)
-            </button>
-            <button type="button" class="btn btn-warning menu-btn" style="background-color: #fd7e14;" onclick="goToPage('Pages/snack.html')">
-                <span class="badge-num">8</span> 🔷 สี่เหลี่ยมขนมเปียกปูน (Rhombus)
-            </button>
-            <button type="button" class="btn btn-dark menu-btn" style="background-color: #343a40; color: white;" onclick="goToPage('Pages/cube.html')">
-                <span class="badge-num">9</span> 🧊 ทรงลูกบาศก์ (Cube)
-            </button>
-            <button type="button" class="btn btn-primary menu-btn" style="background-color: #007bff;" onclick="goToPage('Pages/triangleprisim.html')">
-                <span class="badge-num">10</span> 📦 ปริซึมสามเหลี่ยม (Triangular Prism)
-            </button>
-            <button type="button" class="btn btn-danger menu-btn" style="background-color: #e83e8c;" onclick="goToPage('Pages/cone.html')">
-                <span class="badge-num">11</span> 🍦 ทรงกรวย (Cone)
-            </button>
-            <button type="button" class="btn btn-info menu-btn" style="background-color: #17a2b8;" onclick="goToPage('Pages/sphere.html')">
-                <span class="badge-num">12</span> 🔮 ทรงกลม (Sphere)
-            </button>
+        <div class="row">
+            <!-- คอลัมน์ซ้าย: แบบทดสอบบทเรียน -->
+            <div class="col-md-6">
+                <div class="section-title">📚 แบบทดสอบบทเรียน</div>
+                <button type="button" class="btn btn-primary menu-btn" onclick="goToPage('Pages/circle.html')">
+                    <span class="badge-num">1</span> ⚪ วงกลม (Circle)
+                </button>
+                <button type="button" class="btn btn-success menu-btn" onclick="goToPage('Pages/square.html')">
+                    <span class="badge-num">2</span> 🟦 สี่เหลี่ยมจัตุรัส (Square)
+                </button>
+                <button type="button" class="btn btn-info menu-btn" onclick="goToPage('Pages/triangle.html')">
+                    <span class="badge-num">3</span> 🔺 สามเหลี่ยม (Triangle)
+                </button>
+                <button type="button" class="btn btn-warning menu-btn" onclick="goToPage('Pages/piramid.html')">
+                    <span class="badge-num">4</span> 📐 พีระมิด (Pyramid)
+                </button>
+                <button type="button" class="btn btn-danger menu-btn" onclick="goToPage('Pages/Cylinder.html')">
+                    <span class="badge-num">5</span> 🛢️ ทรงกระบอก (Cylinder)
+                </button>
+                <button type="button" class="btn btn-primary menu-btn" style="background-color: #6f42c1;" onclick="goToPage('Pages/kite.html')">
+                    <span class="badge-num">6</span> 🪁 สี่เหลี่ยมรูปว่าว (Kite)
+                </button>
+                <button type="button" class="btn btn-info menu-btn" style="background-color: #20c997;" onclick="goToPage('Pages/pork.html')">
+                    <span class="badge-num">7</span> ⏢ สี่เหลี่ยมคางหมู (Trapezoid)
+                </button>
+                <button type="button" class="btn btn-warning menu-btn" style="background-color: #fd7e14;" onclick="goToPage('Pages/snack.html')">
+                    <span class="badge-num">8</span> 🔷 สี่เหลี่ยมขนมเปียกปูน (Rhombus)
+                </button>
+                <button type="button" class="btn btn-dark menu-btn" style="background-color: #343a40; color: white;" onclick="goToPage('Pages/cube.html')">
+                    <span class="badge-num">9</span> 🧊 ทรงลูกบาศก์ (Cube)
+                </button>
+                <button type="button" class="btn btn-primary menu-btn" style="background-color: #007bff;" onclick="goToPage('Pages/triangleprisim.html')">
+                    <span class="badge-num">10</span> 📦 ปริซึมสามเหลี่ยม (Triangular Prism)
+                </button>
+                <button type="button" class="btn btn-danger menu-btn" style="background-color: #e83e8c;" onclick="goToPage('Pages/cone.html')">
+                    <span class="badge-num">11</span> 🍦 ทรงกรวย (Cone)
+                </button>
+                <button type="button" class="btn btn-info menu-btn" style="background-color: #17a2b8;" onclick="goToPage('Pages/sphere.html')">
+                    <span class="badge-num">12</span> 🔮 ทรงกลม (Sphere)
+                </button>
+            </div>
+
+            <!-- คอลัมน์ขวา: โซนเกม -->
+            <div class="col-md-6">
+                <div class="section-title">🎮 โซนเกมฝึกทักษะ</div>
+                <button type="button" class="btn btn-success menu-btn" style="background-color: #28a745;" onclick="goToPage('Pages/game01.html')">
+                    <span class="badge-num">🎮</span> Test Game 01
+                </button>
+                <button type="button" class="btn btn-warning menu-btn" style="background-color: #ffc107; color: #333;" onclick="goToPage('Pages/game02.html')">
+                    <span class="badge-num">🎮</span> Test Game 02
+                </button>
+                <button type="button" class="btn btn-danger menu-btn" style="background-color: #dc3545;" onclick="goToPage('Pages/game03.html')">
+                    <span class="badge-num">🎮</span> Test Game 03
+                </button>
+            </div>
         </div>
 
         <div id="loadingBox" style="display: none;">
-            <p class="text-center" style="margin-bottom: 8px; font-weight: bold; color: #495057;">⏳ กำลังโหลดแบบทดสอบ...</p>
+            <p class="text-center" style="margin-bottom: 8px; font-weight: bold; color: #495057;">⏳ กำลังโหลด...</p>
             <div class="progress">
                 <div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar" style="width: 0%;">0%</div>
             </div>
