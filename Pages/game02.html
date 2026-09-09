@@ -1,1 +1,173 @@
 
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <title>Test Game 02: เกมจับคู่ความจำเรขาคณิต</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #fbc531 0%, #e84118 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 0;
+        }
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            padding: 30px;
+            max-width: 450px;
+            width: 100%;
+            margin: auto;
+            text-align: center;
+        }
+        .info-board {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+        .grid-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .card-item {
+            aspect-ratio: 1;
+            background-color: #3498db;
+            border-radius: 10px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: transparent;
+        }
+        .card-item.flipped {
+            background-color: #ffffff;
+            border: 2px solid #3498db;
+            color: #333;
+            transform: scale(0.98);
+        }
+        .card-item.matched {
+            background-color: #2ecc71;
+            border: 2px solid #27ae60;
+            color: #fff;
+            cursor: default;
+        }
+        .back-btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="game-card">
+        <h2>🎮 Test Game 02</h2>
+        <p class="text-muted">เกมจับคู่สัญลักษณ์รูปทรงเรขาคณิตที่เหมือนกัน</p>
+
+        <div class="info-board">
+            <span>ครั้งที่เปิด: <span id="moves" style="color: #e74c3c;">0</span></span>
+            <span>คู่ที่เหลือ: <span id="pairsLeft" style="color: #27ae60;">4</span></span>
+        </div>
+
+        <div class="grid-board" id="gameGrid">
+            <!-- การ์ดจะถูกสร้างด้วย JavaScript -->
+        </div>
+
+        <div id="winMessage" style="font-weight: bold; font-size: 18px; color: #27ae60; margin-bottom: 15px; min-height: 24px;"></div>
+
+        <button class="btn btn-default back-btn" onclick="location.href='../index.html'">⬅ กลับหน้าเมนูหลัก</button>
+    </div>
+</div>
+
+<script>
+    const icons = ["⚪", "🟦", "🔺", "🛢️"];
+    let cards = [...icons, ...icons]; // 4 คู่ (8 การ์ด)
+    let flippedCards = [];
+    let matchedPairs = 0;
+    let moves = 0;
+    let isLocked = false;
+
+    function initGame() {
+        // สลับตำแหน่งการ์ด
+        cards.sort(() => Math.random() - 0.5);
+        
+        let gridHtml = "";
+        cards.forEach((icon, index) => {
+            gridHtml += `<div class="card-item" data-icon="${icon}" data-index="${index}" onclick="flipCard(this)">?</div>`;
+        });
+        document.getElementById("gameGrid").innerHTML = gridHtml;
+        matchedPairs = 0;
+        moves = 0;
+        document.getElementById("moves").innerText = moves;
+        document.getElementById("pairsLeft").innerText = icons.length;
+        document.getElementById("winMessage").innerText = "";
+    }
+
+    function flipCard(card) {
+        if (isLocked) return;
+        if (card.classList.contains("flipped") || card.classList.contains("matched")) return;
+
+        card.classList.add("flipped");
+        card.innerText = card.getAttribute("data-icon");
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+            moves++;
+            document.getElementById("moves").innerText = moves;
+            checkMatch();
+        }
+    }
+
+    function checkMatch() {
+        let card1 = flippedCards[0];
+        let card2 = flippedCards[1];
+
+        if (card1.getAttribute("data-icon") === card2.getAttribute("data-icon")) {
+            // จับคู่สำเร็จ
+            card1.classList.add("matched");
+            card2.classList.add("matched");
+            flippedCards = [];
+            matchedPairs++;
+            document.getElementById("pairsLeft").innerText = icons.length - matchedPairs;
+
+            if (matchedPairs === icons.length) {
+                document.getElementById("winMessage").innerText = "🎉 ยินดีด้วยครับ! คุณชนะแล้ว!";
+            }
+        } else {
+            // จับคู่ไม่สำเร็จ คว่ำกลับ
+            isLocked = true;
+            setTimeout(() => {
+                card1.classList.remove("flipped");
+                card1.innerText = "?";
+                card2.classList.remove("flipped");
+                card2.innerText = "?";
+                flippedCards = [];
+                isLocked = false;
+            }, 800);
+        }
+    }
+
+    initGame();
+</script>
+
+</body>
+</html>
