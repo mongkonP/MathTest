@@ -1,1 +1,69 @@
-<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>แบบทดสอบเรื่องปริซึมสามเหลี่ยม</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="../assets/css/app.css"><script src="../assets/js/quiz.js" defer></script><script src="../assets/js/navigation.js" defer></script></head><body><main class="container"><section class="app-card"><h1 class="app-title">ปริซึมสามเหลี่ยม</h1><p class="app-subtitle">ฝึกคำนวณปริมาตรและพื้นที่ผิว</p><div class="app-actions"><button id="newQuestions" class="btn btn-primary" type="button">สุ่มโจทย์ใหม่</button><button class="btn btn-default" type="button" data-nav-home="../index.html">← กลับหน้าเมนูหลัก</button></div><img class="img-responsive thumbnail quiz-image" src="../img/triangular_prism.jpeg" alt="ปริซึมสามเหลี่ยม"><div id="quizQuestions"></div></section></main><script>window.addEventListener("DOMContentLoaded",()=>{const quiz=new GeometryQuiz({questions:[{prompt:v=>`ปริซึมสามเหลี่ยมมีพื้นที่ฐาน <strong>${v.b}</strong> และความสูง <strong>${v.h}</strong> จะมีปริมาตรเท่าใด`,hint:"สูตร: พื้นที่ฐาน × สูง",generate:()=>({b:randomInt(20,100),h:randomInt(10,50)}),answer:v=>v.b*v.h},{prompt:v=>`ปริซึมสามเหลี่ยมมีพื้นที่ฐาน <strong>${v.b}</strong> และพื้นที่ผิวข้าง <strong>${v.s}</strong> จะมีพื้นที่ผิวทั้งหมดเท่าใด`,hint:"สูตร: (2 × พื้นที่ฐาน) + พื้นที่ผิวข้าง",generate:()=>({b:randomInt(20,100),s:randomInt(50,200)}),answer:v=>2*v.b+v.s}]});quiz.start();document.getElementById("newQuestions").addEventListener("click",()=>quiz.newQuestions());});</script></body></html>
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>แบบทดสอบเรื่องปริซึมสามเหลี่ยม</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/app.css" />
+    <script src="../assets/js/quiz.js" defer></script>
+    <script src="../assets/js/navigation.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <section class="app-card">
+        <h1 class="app-title">ปริซึมสามเหลี่ยม</h1>
+        <p class="app-subtitle">ฝึกคำนวณปริมาตรและพื้นที่ผิว</p>
+        <div class="app-actions">
+          <button id="newQuestions" class="btn btn-primary" type="button">
+            สุ่มโจทย์ใหม่</button
+          ><button
+            class="btn btn-default"
+            type="button"
+            data-nav-home="../index.html"
+          >
+            ← กลับหน้าเมนูหลัก
+          </button>
+        </div>
+        <img
+          class="img-responsive thumbnail quiz-image"
+          src="../img/triangular_prism.jpeg"
+          alt="ปริซึมสามเหลี่ยม"
+        />
+        <div id="quizQuestions"></div>
+      </section>
+    </main>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const quiz = new GeometryQuiz({
+          questions: [
+            {
+              prompt: (v) =>
+                `ปริซึมสามเหลี่ยมมีพื้นที่ฐาน <strong>${v.b}</strong> และความสูง <strong>${v.h}</strong> จะมีปริมาตรเท่าใด`,
+              hint: "สูตร: พื้นที่ฐาน × สูง",
+              generate: () => ({ b: randomInt(20, 100), h: randomInt(10, 50) }),
+              answer: (v) => v.b * v.h,
+            },
+            {
+              prompt: (v) =>
+                `ปริซึมสามเหลี่ยมมีพื้นที่ฐาน <strong>${v.b}</strong> และพื้นที่ผิวข้าง <strong>${v.s}</strong> จะมีพื้นที่ผิวทั้งหมดเท่าใด`,
+              hint: "สูตร: (2 × พื้นที่ฐาน) + พื้นที่ผิวข้าง",
+              generate: () => ({
+                b: randomInt(20, 100),
+                s: randomInt(50, 200),
+              }),
+              answer: (v) => 2 * v.b + v.s,
+            },
+          ],
+        });
+        quiz.start();
+        document
+          .getElementById("newQuestions")
+          .addEventListener("click", () => quiz.newQuestions());
+      });
+    </script>
+  </body>
+</html>

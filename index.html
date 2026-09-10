@@ -1,46 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>เมนูบทเรียนและเกมเรขาคณิต</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/app.css" />
     <script src="assets/js/navigation.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <main class="container">
-        <section class="app-card">
-            <h1 class="app-title">📐 เมนูบทเรียนและเกมเรขาคณิต</h1>
-            <p class="app-subtitle">เลือกแบบทดสอบหรือเกมฝึกทักษะที่ต้องการ</p>
+      <section class="app-card">
+        <h1 class="app-title">📐 เมนูบทเรียนและเกมเรขาคณิต</h1>
+        <p class="app-subtitle">เลือกแบบทดสอบหรือเกมฝึกทักษะที่ต้องการ</p>
 
-            <div class="row">
-                <section class="col-md-6" aria-labelledby="quiz-title">
-                    <h2 id="quiz-title" class="section-title">📚 แบบทดสอบบทเรียน</h2>
-                    <button class="btn btn-primary menu-btn" type="button" data-navigate="Pages/circle.html"><span class="badge-num">1</span>⚪ วงกลม</button>
-                    <button class="btn btn-success menu-btn" type="button" data-navigate="Pages/square.html"><span class="badge-num">2</span>🟦 สี่เหลี่ยมจัตุรัส</button>
-                    <button class="btn btn-info menu-btn" type="button" data-navigate="Pages/triangle.html"><span class="badge-num">3</span>🔺 สามเหลี่ยม</button>
-                    <button class="btn btn-warning menu-btn" type="button" data-navigate="Pages/piramid.html"><span class="badge-num">4</span>📐 พีระมิด</button>
-                    <button class="btn btn-danger menu-btn" type="button" data-navigate="Pages/Cylinder.html"><span class="badge-num">5</span>🛢️ ทรงกระบอก</button>
-                    <button class="btn btn-primary menu-btn" type="button" data-navigate="Pages/kite.html"><span class="badge-num">6</span>🪁 สี่เหลี่ยมรูปว่าว</button>
-                    <button class="btn btn-info menu-btn" type="button" data-navigate="Pages/pork.html"><span class="badge-num">7</span>⏢ สี่เหลี่ยมคางหมู</button>
-                    <button class="btn btn-warning menu-btn" type="button" data-navigate="Pages/snack.html"><span class="badge-num">8</span>🔷 สี่เหลี่ยมขนมเปียกปูน</button>
-                    <button class="btn btn-primary menu-btn" type="button" data-navigate="Pages/cube.html"><span class="badge-num">9</span>🧊 ทรงลูกบาศก์</button>
-                    <button class="btn btn-info menu-btn" type="button" data-navigate="Pages/triangleprisim.html"><span class="badge-num">10</span>📦 ปริซึมสามเหลี่ยม</button>
-                    <button class="btn btn-danger menu-btn" type="button" data-navigate="Pages/cone.html"><span class="badge-num">11</span>🍦 ทรงกรวย</button>
-                    <button class="btn btn-info menu-btn" type="button" data-navigate="Pages/sphere.html"><span class="badge-num">12</span>🔮 ทรงกลม</button>
-                </section>
+        <div class="row">
+          <section class="col-md-6" aria-labelledby="quiz-title">
+            <h2 id="quiz-title" class="section-title">📚 แบบทดสอบบทเรียน</h2>
+            <button
+              class="btn btn-primary menu-btn"
+              type="button"
+              data-navigate="Pages/circle.html"
+            >
+              <span class="badge-num">1</span>⚪ วงกลม
+            </button>
+            <button
+              class="btn btn-success menu-btn"
+              type="button"
+              data-navigate="Pages/square.html"
+            >
+              <span class="badge-num">2</span>🟦 สี่เหลี่ยมจัตุรัส
+            </button>
+            <button
+              class="btn btn-info menu-btn"
+              type="button"
+              data-navigate="Pages/triangle.html"
+            >
+              <span class="badge-num">3</span>🔺 สามเหลี่ยม
+            </button>
+            <button
+              class="btn btn-warning menu-btn"
+              type="button"
+              data-navigate="Pages/piramid.html"
+            >
+              <span class="badge-num">4</span>📐 พีระมิด
+            </button>
+            <button
+              class="btn btn-danger menu-btn"
+              type="button"
+              data-navigate="Pages/Cylinder.html"
+            >
+              <span class="badge-num">5</span>🛢️ ทรงกระบอก
+            </button>
+            <button
+              class="btn btn-primary menu-btn"
+              type="button"
+              data-navigate="Pages/kite.html"
+            >
+              <span class="badge-num">6</span>🪁 สี่เหลี่ยมรูปว่าว
+            </button>
+            <button
+              class="btn btn-info menu-btn"
+              type="button"
+              data-navigate="Pages/pork.html"
+            >
+              <span class="badge-num">7</span>⏢ สี่เหลี่ยมคางหมู
+            </button>
+            <button
+              class="btn btn-warning menu-btn"
+              type="button"
+              data-navigate="Pages/snack.html"
+            >
+              <span class="badge-num">8</span>🔷 สี่เหลี่ยมขนมเปียกปูน
+            </button>
+            <button
+              class="btn btn-primary menu-btn"
+              type="button"
+              data-navigate="Pages/cube.html"
+            >
+              <span class="badge-num">9</span>🧊 ทรงลูกบาศก์
+            </button>
+            <button
+              class="btn btn-info menu-btn"
+              type="button"
+              data-navigate="Pages/triangleprisim.html"
+            >
+              <span class="badge-num">10</span>📦 ปริซึมสามเหลี่ยม
+            </button>
+            <button
+              class="btn btn-danger menu-btn"
+              type="button"
+              data-navigate="Pages/cone.html"
+            >
+              <span class="badge-num">11</span>🍦 ทรงกรวย
+            </button>
+            <button
+              class="btn btn-info menu-btn"
+              type="button"
+              data-navigate="Pages/sphere.html"
+            >
+              <span class="badge-num">12</span>🔮 ทรงกลม
+            </button>
+          </section>
 
-                <section class="col-md-6" aria-labelledby="game-title">
-                    <h2 id="game-title" class="section-title">🎮 โซนเกมฝึกทักษะ</h2>
-                    <button class="btn btn-success menu-btn" type="button" data-navigate="Pages/game01.html"><span class="badge-num">🎮</span>เกมทายรูปทรง</button>
-                    <button class="btn btn-warning menu-btn" type="button" data-navigate="Pages/game02.html"><span class="badge-num">🎮</span>เกมจับคู่ความจำ</button>
-                    <button class="btn btn-danger menu-btn" type="button" data-navigate="Pages/game03.html"><span class="badge-num">🎮</span>เกมคำนวณพื้นที่</button>
-                </section>
-            </div>
+          <section class="col-md-6" aria-labelledby="game-title">
+            <h2 id="game-title" class="section-title">🎮 โซนเกมฝึกทักษะ</h2>
+            <button
+              class="btn btn-success menu-btn"
+              type="button"
+              data-navigate="Pages/game01.html"
+            >
+              <span class="badge-num">🎮</span>เกมทายรูปทรง
+            </button>
+            <button
+              class="btn btn-warning menu-btn"
+              type="button"
+              data-navigate="Pages/game02.html"
+            >
+              <span class="badge-num">🎮</span>เกมจับคู่ความจำ
+            </button>
+            <button
+              class="btn btn-danger menu-btn"
+              type="button"
+              data-navigate="Pages/game03.html"
+            >
+              <span class="badge-num">🎮</span>เกมคำนวณพื้นที่
+            </button>
+          </section>
+        </div>
 
-            <div id="loadingBox" role="status">กำลังเปิดหน้าที่เลือก...</div>
-        </section>
+        <div id="loadingBox" role="status">กำลังเปิดหน้าที่เลือก...</div>
+      </section>
     </main>
-</body>
+  </body>
 </html>

@@ -1,1 +1,73 @@
-<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>แบบทดสอบเรื่องสามเหลี่ยม</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="../assets/css/app.css"><script src="../assets/js/quiz.js" defer></script><script src="../assets/js/navigation.js" defer></script></head><body><main class="container"><section class="app-card"><h1 class="app-title">สามเหลี่ยม</h1><p class="app-subtitle">ฝึกคำนวณพื้นที่และเส้นรอบรูป</p><div class="app-actions"><button id="newQuestions" class="btn btn-primary" type="button">สุ่มโจทย์ใหม่</button><button class="btn btn-default" type="button" data-nav-home="../index.html">← กลับหน้าเมนูหลัก</button></div><img class="img-responsive thumbnail quiz-image" src="../img/triangle.jpeg" alt="สามเหลี่ยม"><div id="quizQuestions"></div></section></main><script>window.addEventListener("DOMContentLoaded", () => { const quiz = new GeometryQuiz({ questions: [{ prompt: v => `สามเหลี่ยมมีฐาน <strong>${v.b}</strong> และสูง <strong>${v.h}</strong> จะมีพื้นที่เท่าใด`, hint: "สูตร: 1/2 × ฐาน × สูง", generate: () => ({ b: randomInt(10, 40) * 2, h: randomInt(10, 40) }), answer: v => 0.5 * v.b * v.h }, { prompt: v => `สามเหลี่ยมมีด้านยาว <strong>${v.a}</strong>, <strong>${v.b}</strong> และ <strong>${v.c}</strong> จะมีเส้นรอบรูปเท่าใด`, hint: "สูตร: a + b + c", generate: () => ({ a: randomInt(10, 40), b: randomInt(10, 40), c: randomInt(10, 40) }), answer: v => v.a + v.b + v.c }] }); quiz.start(); document.getElementById("newQuestions").addEventListener("click", () => quiz.newQuestions()); });</script></body></html>
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>แบบทดสอบเรื่องสามเหลี่ยม</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/app.css" />
+    <script src="../assets/js/quiz.js" defer></script>
+    <script src="../assets/js/navigation.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <section class="app-card">
+        <h1 class="app-title">สามเหลี่ยม</h1>
+        <p class="app-subtitle">ฝึกคำนวณพื้นที่และเส้นรอบรูป</p>
+        <div class="app-actions">
+          <button id="newQuestions" class="btn btn-primary" type="button">
+            สุ่มโจทย์ใหม่</button
+          ><button
+            class="btn btn-default"
+            type="button"
+            data-nav-home="../index.html"
+          >
+            ← กลับหน้าเมนูหลัก
+          </button>
+        </div>
+        <img
+          class="img-responsive thumbnail quiz-image"
+          src="../img/triangle.jpeg"
+          alt="สามเหลี่ยม"
+        />
+        <div id="quizQuestions"></div>
+      </section>
+    </main>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const quiz = new GeometryQuiz({
+          questions: [
+            {
+              prompt: (v) =>
+                `สามเหลี่ยมมีฐาน <strong>${v.b}</strong> และสูง <strong>${v.h}</strong> จะมีพื้นที่เท่าใด`,
+              hint: "สูตร: 1/2 × ฐาน × สูง",
+              generate: () => ({
+                b: randomInt(10, 40) * 2,
+                h: randomInt(10, 40),
+              }),
+              answer: (v) => 0.5 * v.b * v.h,
+            },
+            {
+              prompt: (v) =>
+                `สามเหลี่ยมมีด้านยาว <strong>${v.a}</strong>, <strong>${v.b}</strong> และ <strong>${v.c}</strong> จะมีเส้นรอบรูปเท่าใด`,
+              hint: "สูตร: a + b + c",
+              generate: () => ({
+                a: randomInt(10, 40),
+                b: randomInt(10, 40),
+                c: randomInt(10, 40),
+              }),
+              answer: (v) => v.a + v.b + v.c,
+            },
+          ],
+        });
+        quiz.start();
+        document
+          .getElementById("newQuestions")
+          .addEventListener("click", () => quiz.newQuestions());
+      });
+    </script>
+  </body>
+</html>

@@ -1,1 +1,66 @@
-<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>แบบทดสอบเรื่องทรงลูกบาศก์</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="../assets/css/app.css"><script src="../assets/js/quiz.js" defer></script><script src="../assets/js/navigation.js" defer></script></head><body><main class="container"><section class="app-card"><h1 class="app-title">ทรงลูกบาศก์</h1><p class="app-subtitle">ฝึกคำนวณพื้นที่ผิวและปริมาตร</p><div class="app-actions"><button id="newQuestions" class="btn btn-primary" type="button">สุ่มโจทย์ใหม่</button><button class="btn btn-default" type="button" data-nav-home="../index.html">← กลับหน้าเมนูหลัก</button></div><img class="img-responsive thumbnail quiz-image" src="../img/cube.jpeg" alt="ทรงลูกบาศก์"><div id="quizQuestions"></div></section></main><script>window.addEventListener("DOMContentLoaded",()=>{const quiz=new GeometryQuiz({questions:[{prompt:v=>`ทรงลูกบาศก์ยาวด้านละ <strong>${v.s}</strong> จะมีพื้นที่ผิวทั้งหมดเท่าใด`,hint:"สูตร: 6 × ด้าน²",generate:()=>({s:randomInt(5,30)}),answer:v=>6*v.s*v.s},{prompt:v=>`ทรงลูกบาศก์ยาวด้านละ <strong>${v.s}</strong> จะมีปริมาตรเท่าใด`,hint:"สูตร: ด้าน³",generate:()=>({s:randomInt(5,30)}),answer:v=>v.s**3}]});quiz.start();document.getElementById("newQuestions").addEventListener("click",()=>quiz.newQuestions());});</script></body></html>
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>แบบทดสอบเรื่องทรงลูกบาศก์</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/app.css" />
+    <script src="../assets/js/quiz.js" defer></script>
+    <script src="../assets/js/navigation.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <section class="app-card">
+        <h1 class="app-title">ทรงลูกบาศก์</h1>
+        <p class="app-subtitle">ฝึกคำนวณพื้นที่ผิวและปริมาตร</p>
+        <div class="app-actions">
+          <button id="newQuestions" class="btn btn-primary" type="button">
+            สุ่มโจทย์ใหม่</button
+          ><button
+            class="btn btn-default"
+            type="button"
+            data-nav-home="../index.html"
+          >
+            ← กลับหน้าเมนูหลัก
+          </button>
+        </div>
+        <img
+          class="img-responsive thumbnail quiz-image"
+          src="../img/cube.jpeg"
+          alt="ทรงลูกบาศก์"
+        />
+        <div id="quizQuestions"></div>
+      </section>
+    </main>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const quiz = new GeometryQuiz({
+          questions: [
+            {
+              prompt: (v) =>
+                `ทรงลูกบาศก์ยาวด้านละ <strong>${v.s}</strong> จะมีพื้นที่ผิวทั้งหมดเท่าใด`,
+              hint: "สูตร: 6 × ด้าน²",
+              generate: () => ({ s: randomInt(5, 30) }),
+              answer: (v) => 6 * v.s * v.s,
+            },
+            {
+              prompt: (v) =>
+                `ทรงลูกบาศก์ยาวด้านละ <strong>${v.s}</strong> จะมีปริมาตรเท่าใด`,
+              hint: "สูตร: ด้าน³",
+              generate: () => ({ s: randomInt(5, 30) }),
+              answer: (v) => v.s ** 3,
+            },
+          ],
+        });
+        quiz.start();
+        document
+          .getElementById("newQuestions")
+          .addEventListener("click", () => quiz.newQuestions());
+      });
+    </script>
+  </body>
+</html>

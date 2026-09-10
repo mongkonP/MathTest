@@ -1,1 +1,67 @@
-<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>แบบทดสอบเรื่องวงกลม</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="../assets/css/app.css"><script src="../assets/js/quiz.js" defer></script><script src="../assets/js/navigation.js" defer></script></head><body><main class="container"><section class="app-card"><h1 class="app-title">วงกลม</h1><p class="app-subtitle">กำหนดให้ π = 22/7</p><div class="app-actions"><button id="newQuestions" class="btn btn-primary" type="button">สุ่มโจทย์ใหม่</button><button class="btn btn-default" type="button" data-nav-home="../index.html">← กลับหน้าเมนูหลัก</button></div><img class="img-responsive thumbnail quiz-image" src="../img/circle.jpg" alt="วงกลม"><div id="quizQuestions"></div></section></main><script>window.addEventListener("DOMContentLoaded", () => { const quiz = new GeometryQuiz({ questions: [{ prompt: v => `วงกลมมีรัศมี <strong>${v.r}</strong> จะมีพื้นที่เท่าใด`, hint: "สูตร: π × r²", generate: () => ({ r: randomInt(20, 50) }), answer: v => (22 / 7) * v.r * v.r }, { prompt: v => `วงกลมมีรัศมี <strong>${v.r}</strong> จะมีเส้นรอบวงเท่าใด`, hint: "สูตร: 2 × π × r", generate: () => ({ r: randomInt(20, 50) }), answer: v => 2 * (22 / 7) * v.r }] }); quiz.start(); document.getElementById("newQuestions").addEventListener("click", () => quiz.newQuestions()); });</script></body></html>
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>แบบทดสอบเรื่องวงกลม</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/app.css" />
+    <script src="../assets/js/quiz.js" defer></script>
+    <script src="../assets/js/navigation.js" defer></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <section class="app-card">
+        <h1 class="app-title">วงกลม</h1>
+        <p class="app-subtitle">กำหนดให้ π = 22/7</p>
+        <div class="app-actions">
+          <button id="newQuestions" class="btn btn-primary" type="button">
+            สุ่มโจทย์ใหม่</button
+          ><button
+            class="btn btn-default"
+            type="button"
+            data-nav-home="../index.html"
+          >
+            ← กลับหน้าเมนูหลัก
+          </button>
+        </div>
+        <img
+          class="img-responsive thumbnail quiz-image"
+          src="../img/circle.jpg"
+          alt="วงกลม"
+        />
+        <div id="quizQuestions"></div>
+      </section>
+    </main>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const quiz = new GeometryQuiz({
+          questions: [
+            {
+              prompt: (v) =>
+                `วงกลมมีรัศมี <strong>${v.r}</strong> จะมีพื้นที่เท่าใด`,
+              hint: "สูตร: π × r²",
+              generate: () => ({ r: randomInt(20, 50) }),
+              answer: (v) => (22 / 7) * v.r * v.r,
+            },
+            {
+              prompt: (v) =>
+                `วงกลมมีรัศมี <strong>${v.r}</strong> จะมีเส้นรอบวงเท่าใด`,
+              hint: "สูตร: 2 × π × r",
+              generate: () => ({ r: randomInt(20, 50) }),
+              answer: (v) => 2 * (22 / 7) * v.r,
+            },
+          ],
+        });
+        quiz.start();
+        document
+          .getElementById("newQuestions")
+          .addEventListener("click", () => quiz.newQuestions());
+      });
+    </script>
+  </body>
+</html>

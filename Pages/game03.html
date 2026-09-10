@@ -1,144 +1,182 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
-<head>
+  <head>
     <title>Test Game 03: แข่งคำนวณพื้นที่เรขาคณิต</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/app.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/app.css" />
     <script src="../assets/js/navigation.js" defer></script>
     <style>
-        body {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px 0;
-        }
-        .game-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            padding: 30px;
-            max-width: 500px;
-            width: 100%;
-            margin: auto;
-            text-align: center;
-        }
-        .status-board {
-            font-size: 16px;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            background: #f8f9fa;
-            padding: 10px 15px;
-            border-radius: 10px;
-        }
-        .timer-progress {
-            height: 10px !important;
-            margin-bottom: 20px;
-            border-radius: 10px !important;
-        }
-        .question-card {
-            background: #eef2f7;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: bold;
-            color: #2d3748;
-        }
-        .choice-btn {
-            font-size: 18px;
-            font-weight: bold;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 10px !important;
-            width: 100%;
-            transition: all 0.2s;
-        }
-        .choice-btn:hover {
-            transform: translateY(-2px);
-        }
+      body {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px 0;
+      }
+      .game-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        padding: 30px;
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+        text-align: center;
+      }
+      .status-board {
+        font-size: 16px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        background: #f8f9fa;
+        padding: 10px 15px;
+        border-radius: 10px;
+      }
+      .timer-progress {
+        height: 10px !important;
+        margin-bottom: 20px;
+        border-radius: 10px !important;
+      }
+      .question-card {
+        background: #eef2f7;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #2d3748;
+      }
+      .choice-btn {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 10px !important;
+        width: 100%;
+        transition: all 0.2s;
+      }
+      .choice-btn:hover {
+        transform: translateY(-2px);
+      }
     </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="game-card">
+  </head>
+  <body>
+    <div class="container">
+      <div class="game-card">
         <h2>⚡ Test Game 03</h2>
         <p class="text-muted">คำนวณพื้นที่เรขาคณิต ด่านสปีดควิซ!</p>
 
         <div class="status-board">
-            <span>คะแนน: <span id="score" style="color: #28a745;">0</span></span>
-            <span>เวลาเหลือ: <span id="timeText" style="color: #dc3545;">10</span>s</span>
+          <span>คะแนน: <span id="score" style="color: #28a745">0</span></span>
+          <span
+            >เวลาเหลือ:
+            <span id="timeText" style="color: #dc3545">10</span>s</span
+          >
         </div>
 
         <div class="progress timer-progress">
-            <div id="timerBar" class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+          <div
+            id="timerBar"
+            class="progress-bar progress-bar-danger"
+            style="width: 100%"
+          ></div>
         </div>
 
-        <div class="question-card" id="questionText">
-            กำลังเริ่มเกม...
-        </div>
+        <div class="question-card" id="questionText">กำลังเริ่มเกม...</div>
 
         <div id="choicesBox">
-            <!-- ปุ่มตัวเลือกจะถูกสร้างด้วย JavaScript -->
+          <!-- ปุ่มตัวเลือกจะถูกสร้างด้วย JavaScript -->
         </div>
 
-        <div id="feedback" style="font-weight: bold; font-size: 16px; margin: 15px 0; min-height: 24px;"></div>
+        <div
+          id="feedback"
+          style="
+            font-weight: bold;
+            font-size: 16px;
+            margin: 15px 0;
+            min-height: 24px;
+          "
+        ></div>
 
-        <button class="btn btn-default back-btn" type="button" data-nav-home="../index.html">⬅ กลับหน้าเมนูหลัก</button>
+        <button
+          class="btn btn-default back-btn"
+          type="button"
+          data-nav-home="../index.html"
+        >
+          ⬅ กลับหน้าเมนูหลัก
+        </button>
+      </div>
     </div>
-</div>
 
-<script>
-    const questions = [
-        { q: "สี่เหลี่ยมจัตุรัส ยาวด้านละ 4 ซม. มีพื้นที่กี่ ตร.ซม.?", answer: "16", choices: ["12", "16", "20"] },
-        { q: "สี่เหลี่ยมผืนผ้า กว้าง 3 ซม. ยาว 6 ซม. มีพื้นที่กี่ ตร.ซม.?", answer: "18", choices: ["18", "9", "24"] },
-        { q: "สามเหลี่ยม ฐาน 4 ซม. สูง 5 ซม. มีพื้นที่กี่ ตร.ซม.?", answer: "10", choices: ["20", "10", "15"] },
-        { q: "ทรงลูกบาศก์ ยาวด้านละ 2 ซม. มีปริมาตรกี่ ลูกบาศก์ ซม.?", answer: "8", choices: ["6", "8", "12"] }
-    ];
+    <script>
+      const questions = [
+        {
+          q: "สี่เหลี่ยมจัตุรัส ยาวด้านละ 4 ซม. มีพื้นที่กี่ ตร.ซม.?",
+          answer: "16",
+          choices: ["12", "16", "20"],
+        },
+        {
+          q: "สี่เหลี่ยมผืนผ้า กว้าง 3 ซม. ยาว 6 ซม. มีพื้นที่กี่ ตร.ซม.?",
+          answer: "18",
+          choices: ["18", "9", "24"],
+        },
+        {
+          q: "สามเหลี่ยม ฐาน 4 ซม. สูง 5 ซม. มีพื้นที่กี่ ตร.ซม.?",
+          answer: "10",
+          choices: ["20", "10", "15"],
+        },
+        {
+          q: "ทรงลูกบาศก์ ยาวด้านละ 2 ซม. มีปริมาตรกี่ ลูกบาศก์ ซม.?",
+          answer: "8",
+          choices: ["6", "8", "12"],
+        },
+      ];
 
-    let currentQ = 0;
-    let score = 0;
-    let timeLeft = 10;
-    let timerInterval = null;
+      let currentQ = 0;
+      let score = 0;
+      let timeLeft = 10;
+      let timerInterval = null;
 
-    function startTimer() {
+      function startTimer() {
         clearInterval(timerInterval);
         timeLeft = 10;
         document.getElementById("timeText").innerText = timeLeft;
         document.getElementById("timerBar").style.width = "100%";
 
         timerInterval = setInterval(() => {
-            timeLeft--;
-            document.getElementById("timeText").innerText = timeLeft;
-            document.getElementById("timerBar").style.width = (timeLeft * 10) + "%";
+          timeLeft--;
+          document.getElementById("timeText").innerText = timeLeft;
+          document.getElementById("timerBar").style.width = timeLeft * 10 + "%";
 
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                checkAnswer(null); // หมดเวลา
-            }
-        }, 1000);
-    }
-
-    function loadQuestion() {
-        if (currentQ >= questions.length) {
+          if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            document.getElementById("questionText").innerHTML = "🎉 จบการแข่งขัน!";
-            document.getElementById("choicesBox").innerHTML = `<h3>คะแนนรวมของคุณ: ${score} / ${questions.length}</h3>`;
-            document.getElementById("feedback").innerText = "";
-            return;
+            checkAnswer(null); // หมดเวลา
+          }
+        }, 1000);
+      }
+
+      function loadQuestion() {
+        if (currentQ >= questions.length) {
+          clearInterval(timerInterval);
+          document.getElementById("questionText").innerHTML =
+            "🎉 จบการแข่งขัน!";
+          document.getElementById("choicesBox").innerHTML =
+            `<h3>คะแนนรวมของคุณ: ${score} / ${questions.length}</h3>`;
+          document.getElementById("feedback").innerText = "";
+          return;
         }
 
         let qData = questions[currentQ];
@@ -146,38 +184,37 @@
         document.getElementById("feedback").innerText = "";
 
         let choicesHtml = "";
-        qData.choices.forEach(choice => {
-            choicesHtml += `<button class="btn btn-info choice-btn" onclick="checkAnswer('${choice}')">${choice}</button>`;
+        qData.choices.forEach((choice) => {
+          choicesHtml += `<button class="btn btn-info choice-btn" onclick="checkAnswer('${choice}')">${choice}</button>`;
         });
         document.getElementById("choicesBox").innerHTML = choicesHtml;
 
         startTimer();
-    }
+      }
 
-    function checkAnswer(selected) {
+      function checkAnswer(selected) {
         clearInterval(timerInterval);
         let qData = questions[currentQ];
         let feedback = document.getElementById("feedback");
 
         if (selected === qData.answer) {
-            score++;
-            document.getElementById("score").innerText = score;
-            feedback.style.color = "#28a745";
-            feedback.innerText = "✨ ถูกต้อง!";
+          score++;
+          document.getElementById("score").innerText = score;
+          feedback.style.color = "#28a745";
+          feedback.innerText = "✨ ถูกต้อง!";
         } else if (selected === null) {
-            feedback.style.color = "#dc3545";
-            feedback.innerText = `⏰ หมดเวลา! ตอบ: ${qData.answer}`;
+          feedback.style.color = "#dc3545";
+          feedback.innerText = `⏰ หมดเวลา! ตอบ: ${qData.answer}`;
         } else {
-            feedback.style.color = "#dc3545";
-            feedback.innerText = `❌ ผิด! ตอบ: ${qData.answer}`;
+          feedback.style.color = "#dc3545";
+          feedback.innerText = `❌ ผิด! ตอบ: ${qData.answer}`;
         }
 
         currentQ++;
         setTimeout(loadQuestion, 1500);
-    }
+      }
 
-    loadQuestion();
-</script>
-
-</body>
+      loadQuestion();
+    </script>
+  </body>
 </html>

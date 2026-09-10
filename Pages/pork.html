@@ -1,1 +1,75 @@
-<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>แบบทดสอบเรื่องสี่เหลี่ยมคางหมู</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="../assets/css/app.css"><script src="../assets/js/quiz.js" defer></script><script src="../assets/js/navigation.js" defer></script></head><body><main class="container"><section class="app-card"><h1 class="app-title">สี่เหลี่ยมคางหมู</h1><p class="app-subtitle">ฝึกคำนวณพื้นที่และเส้นรอบรูป</p><div class="app-actions"><button id="newQuestions" class="btn btn-primary" type="button">สุ่มโจทย์ใหม่</button><button class="btn btn-default" type="button" data-nav-home="../index.html">← กลับหน้าเมนูหลัก</button></div><img class="img-responsive thumbnail quiz-image" src="../img/pork.jpeg" alt="สี่เหลี่ยมคางหมู"><div id="quizQuestions"></div></section></main><script>window.addEventListener("DOMContentLoaded",()=>{const quiz=new GeometryQuiz({questions:[{prompt:v=>`สี่เหลี่ยมคางหมูมีความสูง <strong>${v.h}</strong> และด้านคู่ขนานยาว <strong>${v.a}</strong>, <strong>${v.b}</strong> จะมีพื้นที่เท่าใด`,hint:"สูตร: 1/2 × สูง × (ด้านคู่ขนาน 1 + ด้านคู่ขนาน 2)",generate:()=>({h:randomInt(100,250),a:randomInt(100,250),b:randomInt(100,250)}),answer:v=>0.5*v.h*(v.a+v.b)},{prompt:v=>`สี่เหลี่ยมคางหมูมีด้านยาว <strong>${v.a}</strong>, <strong>${v.b}</strong>, <strong>${v.c}</strong> และ <strong>${v.d}</strong> จะมีเส้นรอบรูปเท่าใด`,hint:"สูตร: a + b + c + d",generate:()=>({a:randomInt(100,250),b:randomInt(100,250),c:randomInt(100,250),d:randomInt(100,250)}),answer:v=>v.a+v.b+v.c+v.d}]});quiz.start();document.getElementById("newQuestions").addEventListener("click",()=>quiz.newQuestions());});</script></body></html>
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>แบบทดสอบเรื่องสี่เหลี่ยมคางหมู</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/app.css" />
+    <script src="../assets/js/quiz.js" defer></script>
+    <script src="../assets/js/navigation.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <section class="app-card">
+        <h1 class="app-title">สี่เหลี่ยมคางหมู</h1>
+        <p class="app-subtitle">ฝึกคำนวณพื้นที่และเส้นรอบรูป</p>
+        <div class="app-actions">
+          <button id="newQuestions" class="btn btn-primary" type="button">
+            สุ่มโจทย์ใหม่</button
+          ><button
+            class="btn btn-default"
+            type="button"
+            data-nav-home="../index.html"
+          >
+            ← กลับหน้าเมนูหลัก
+          </button>
+        </div>
+        <img
+          class="img-responsive thumbnail quiz-image"
+          src="../img/pork.jpeg"
+          alt="สี่เหลี่ยมคางหมู"
+        />
+        <div id="quizQuestions"></div>
+      </section>
+    </main>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const quiz = new GeometryQuiz({
+          questions: [
+            {
+              prompt: (v) =>
+                `สี่เหลี่ยมคางหมูมีความสูง <strong>${v.h}</strong> และด้านคู่ขนานยาว <strong>${v.a}</strong>, <strong>${v.b}</strong> จะมีพื้นที่เท่าใด`,
+              hint: "สูตร: 1/2 × สูง × (ด้านคู่ขนาน 1 + ด้านคู่ขนาน 2)",
+              generate: () => ({
+                h: randomInt(100, 250),
+                a: randomInt(100, 250),
+                b: randomInt(100, 250),
+              }),
+              answer: (v) => 0.5 * v.h * (v.a + v.b),
+            },
+            {
+              prompt: (v) =>
+                `สี่เหลี่ยมคางหมูมีด้านยาว <strong>${v.a}</strong>, <strong>${v.b}</strong>, <strong>${v.c}</strong> และ <strong>${v.d}</strong> จะมีเส้นรอบรูปเท่าใด`,
+              hint: "สูตร: a + b + c + d",
+              generate: () => ({
+                a: randomInt(100, 250),
+                b: randomInt(100, 250),
+                c: randomInt(100, 250),
+                d: randomInt(100, 250),
+              }),
+              answer: (v) => v.a + v.b + v.c + v.d,
+            },
+          ],
+        });
+        quiz.start();
+        document
+          .getElementById("newQuestions")
+          .addEventListener("click", () => quiz.newQuestions());
+      });
+    </script>
+  </body>
+</html>
